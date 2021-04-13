@@ -1,5 +1,13 @@
-FROM launcher.gcr.io/google/nodejs
-COPY . /app/
-WORKDIR /app
-RUN npm install
-CMD ["node", "server.js"]
+# use a node base image
+FROM node:7-onbuild
+
+# set maintainer
+LABEL maintainer "random_label"
+
+# set a health check
+HEALTHCHECK --interval=5s \
+            --timeout=5s \
+            CMD curl -f http://127.0.0.1:8000 || exit 1
+
+# tell docker what port to expose
+EXPOSE 8000
