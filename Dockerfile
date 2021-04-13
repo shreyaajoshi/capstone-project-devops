@@ -1,6 +1,6 @@
 # use a node base image
 FROM node:7-onbuild
-USER jenkins
+
 
 # set maintainer
 LABEL maintainer "random_label"
